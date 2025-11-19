@@ -1,0 +1,149 @@
+/* 1. CSS Reset: Remove default browser margins */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding doesn't increase box width */
+}
+
+/* 2. Global Variables: Store your design colors here for easy changes */
+:root {
+    --primary-color: #A020F0; /* A vibrant purple, adjust as needed */
+    --secondary-color: #8A2BE2; /* A slightly different purple */
+    --dark-bg: #1A0D2F;     /* Very dark purple background */
+    --card-bg: #2C1A4A;     /* Slightly lighter purple for cards */
+    --text-color: #E0E0E0;  /* Light grey for most text */
+    --heading-color: #FFFFFF; /* White for headings */
+    --link-color: #BBAACC;  /* Lighter purple for links */
+    --gradient-start: #7B0099; /* For gradients, e.g., buttons/highlights */
+    --gradient-end: #A020F0;   /* Another gradient color */
+    --font-main: 'Poppins', sans-serif; /* Our new font */
+}
+
+body {
+    font-family: var(--font-main);
+    line-height: 1.6;
+    color: var(--text-color); /* Apply global text color */
+    background-color: var(--dark-bg); /* Apply global dark background */
+    min-height: 100vh; /* Ensure body takes full height */
+    overflow-x: hidden; /* Prevent horizontal scroll from any overflow */
+}
+
+/* 3. Utility Classes */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%; /* Increased padding for more breathing room */
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color); /* Headings are white */
+}
+
+/* --- Navigation Bar Styling --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(26, 13, 47, 0.8); /* Dark background with transparency */
+    backdrop-filter: blur(10px); /* Gives it a frosted glass effect */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Deeper shadow */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(var(--primary-color), 0.3); /* Subtle bottom border */
+}
+
+.logo {
+    font-size: 2rem; /* Larger logo */
+    font-weight: 700; /* Bolder */
+    color: var(--primary-color); /* Purple color */
+    letter-spacing: -1px; /* Tighter spacing for 'S.' */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem; /* More space between links */
+}
+
+.nav-links li a {
+    font-weight: 500;
+    color: var(--text-color); /* Light text color */
+    padding: 0.5rem 0; /* Padding for hover effect */
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: var(--primary-color); /* Highlight on hover */
+}
+
+/* Underline effect for active/hover links */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after { /* 'active' class for current page */
+    width: 100%;
+}
+
+/* Hide the contact button in the main nav for desktop */
+.nav-links .contact-btn-nav {
+    display: none; /* We'll show this only on mobile if needed, or hide if desktop button is elsewhere */
+}
+
+.menu-toggle {
+    display: none; /* Hide on desktop, show on mobile */
+    font-size: 1.8rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* General Button Styles (for both nav and hero) */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.8rem;
+    border-radius: 5px; /* Rounded corners */
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: linear-gradient(90deg, var(--gradient-start) 0%, var(--gradient-end) 100%); /* Purple gradient */
+    color: var(--heading-color); /* White text */
+    box-shadow: 0 5px 15px rgba(var(--primary-color), 0.4); /* Glow effect */
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(var(--primary-color), 0.6);
+}
+
+/* Style for the "Contact Us" button in the navbar (desktop view) */
+.navbar .primary-btn {
+    padding: 0.7rem 1.5rem; /* Slightly smaller for the nav */
+    font-size: 0.95rem;
+    margin-left: 2rem; /* Space from other nav links */
+}
